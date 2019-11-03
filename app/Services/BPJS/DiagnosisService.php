@@ -22,9 +22,17 @@ class DiagnosisService extends AbstractService
 
     public function getDiagnosis($request, $keyword, $start, $limit)
     {
-        $header = $request->headers->all();
-        $data  = $this->get('diagnosa/' . $keyword . '/' . $start . '/' . $limit, [], [], $header);
-        return $data;
+        $search = $this->model::where('cat_code', 'LIKE', "%{$keyword}%")
+            ->orWhere('code', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('name', 'LIKE', "%{$keyword}%")
+            ->orWhere('cat_name', 'LIKE', "%{$keyword}%")->get()->toArray();
+
+        $data = [];
+        if (count($search) > 0) {
+            $data[] = array_slice($search, $start, $limit);
+        }
+
+        return $this->response->setResponse($data, count($search), 'Sukses get data');
     }
 
     public function postDiagnosis($datas)
