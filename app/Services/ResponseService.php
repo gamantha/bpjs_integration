@@ -6,7 +6,8 @@ class ResponseService
     public function setMessage($message, $code = 200, $data = null)
     {
         $response = [
-            'data' => [
+            'response' => $data,
+            'metaData' => [
                 'message' => $message,
                 'code' => $code
             ]
