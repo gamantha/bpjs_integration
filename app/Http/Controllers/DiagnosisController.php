@@ -3,17 +3,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\BPJS\DiagnosaService;
+use App\Services\BPJS\DiagnosisService;
 
-class DiagnosaController extends Controller
+class DiagnosisController extends Controller
 {
     protected $service;
-    public function __construct(DiagnosaService $service)
+    public function __construct(DiagnosisService $service)
     {
         $this->service = $service;
     }
     public function index(Request $request, $keyword, $start, $limit)
     {
-        return $this->service->getDiagnosa($request, $keyword, $start, $limit);
+        return $this->service->getDiagnosis($request, $keyword, $start, $limit);
     }
 }

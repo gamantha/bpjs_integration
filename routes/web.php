@@ -15,5 +15,5 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/diagnosa/{keyword}/{start}/{limit}', 'DiagnosaController@index');
+$router->get('/diagnosa/{keyword}/{start}/{limit}', 'DiagnosisController@index');
 $router->get('/dokter/{start}/{limit}', 'DoctorController@index');

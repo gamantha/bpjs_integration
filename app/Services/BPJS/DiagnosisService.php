@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\ResponseService;
 use App\Services\AbstractService;
 
-class DiagnosaService extends AbstractService
+class DiagnosisService extends AbstractService
 {
     protected $response;
 
@@ -15,7 +15,7 @@ class DiagnosaService extends AbstractService
     {
         $this->response = $response;
     }
-    public function getDiagnosa($request, $keyword, $start, $limit)
+    public function getDiagnosis($request, $keyword, $start, $limit)
     {
         $header = $request->headers->all();
         $data  = $this->get('diagnosa/' . $keyword . '/' . $start . '/' . $limit, [], [], $header);
