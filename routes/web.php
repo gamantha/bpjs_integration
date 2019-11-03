@@ -16,3 +16,4 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/diagnosa/{keyword}/{start}/{limit}', 'DiagnosaController@index');
+$router->get('/dokter/{start}/{limit}', 'DoctorController@index');
