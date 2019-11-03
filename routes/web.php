@@ -17,3 +17,4 @@ $router->get('/', function () use ($router) {
 
 $router->get('/diagnosa/{keyword}/{start}/{limit}', 'DiagnosisController@index');
 $router->get('/dokter/{start}/{limit}', 'DoctorController@index');
+$router->get('/kesadaran', 'AwarenessController@index');
