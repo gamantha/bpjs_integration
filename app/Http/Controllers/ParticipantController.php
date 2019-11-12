@@ -8,6 +8,7 @@ use App\Services\BPJS\ParticipantService;
 class ParticipantController extends Controller
 {
     protected $service;
+
     public function __construct(ParticipantService $service)
     {
         $this->service = $service;

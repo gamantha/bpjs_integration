@@ -13,6 +13,7 @@ class AwarenessService extends AbstractService
     {
         $this->response = $response;
     }
+
     public function getAwareness($request)
     {
         $header = $request->headers->all();

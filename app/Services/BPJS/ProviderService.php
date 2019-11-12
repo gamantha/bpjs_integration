@@ -13,6 +13,7 @@ class ProviderService extends AbstractService
     {
         $this->response = $response;
     }
+
     public function getProvider($request, $start, $limit)
     {
         try {

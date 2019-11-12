@@ -13,6 +13,7 @@ class PoliService extends AbstractService
     {
         $this->response = $response;
     }
+
     public function getPoli($request, $start, $limit)
     {
         try {

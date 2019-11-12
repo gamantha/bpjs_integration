@@ -13,6 +13,7 @@ class DoctorService extends AbstractService
     {
         $this->response = $response;
     }
+
     public function getDoctor($request, $start, $limit)
     {
         try {

@@ -8,6 +8,7 @@ use App\Services\BPJS\VisitsService;
 class VisitsController extends Controller
 {
     protected $service;
+
     public function __construct(VisitsService $service)
     {
         $this->service = $service;

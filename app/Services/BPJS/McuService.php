@@ -13,6 +13,7 @@ class McuService extends AbstractService
     {
         $this->response = $response;
     }
+
     public function postMcu($request)
     {
         try {
