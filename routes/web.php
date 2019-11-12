@@ -27,3 +27,7 @@ $router->group(['prefix' => 'kunjungan'], function () use ($router) {
     $router->put('/', 'VisitsController@updateVisitor');
     $router->delete('/{noVisits}', 'VisitsController@deleteVisitor');
 });
+
+$router->group(['prefix' => 'mcu'], function () use ($router) {
+    $router->post('/', 'McuController@postMcu');
+});
