@@ -32,3 +32,8 @@ $router->group(['prefix' => 'kunjungan'], function () use ($router) {
 $router->group(['prefix' => 'mcu'], function () use ($router) {
     $router->post('/', 'McuController@postMcu');
 });
+
+$router->group(['prefix' => 'peserta'], function () use ($router) {
+    $router->get('/{noParticipant}', 'ParticipantController@index');
+    $router->get('/{jenis}/{noParticipant}', 'ParticipantController@index');
+});
