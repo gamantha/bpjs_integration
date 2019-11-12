@@ -34,9 +34,9 @@ abstract class AbstractService
      * @param array $query
      * @return mixed
      */
-    public function post(string $url, array $params = array(), array $query = array())
+    public function post(string $url, array $headers = array())
     {
-        return $this->send('POST', $url, ['json' => $params, 'query' => $query]);
+        return $this->send('POST', $url, [],  $headers);
     }
     /**
      * Send POST request.
@@ -70,9 +70,9 @@ abstract class AbstractService
      *
      * @return mixed
      */
-    public function put(string $url, array $params = array(), array $query = array())
+    public function put(string $url, array $headers = array())
     {
-        return $this->send('PUT', $url, ['json' => $params, 'query' => $query]);
+        return $this->send('PUT', $url, [], $headers);
     }
     /**
      * Send DELETE request.
@@ -82,9 +82,9 @@ abstract class AbstractService
      *
      * @return mixed
      */
-    public function delete(string $url, array $query = array())
+    public function delete(string $url, array $headers = array())
     {
-        return $this->send('DELETE', $url, ['query' => $query]);
+        return $this->send('DELETE', $url, [], $headers);
     }
 
     public function getHeaders($headers)

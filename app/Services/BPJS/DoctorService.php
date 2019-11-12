@@ -2,8 +2,6 @@
 
 namespace App\Services\BPJS;
 
-
-use Illuminate\Http\Request;
 use App\Services\ResponseService;
 use App\Services\AbstractService;
 
@@ -17,8 +15,12 @@ class DoctorService extends AbstractService
     }
     public function getDoctor($request, $start, $limit)
     {
-        $header = $request->headers->all();
-        $data  = $this->get('dokter/' . $start . '/' . $limit, [], [], $header);
-        return $data;
+        try {
+            $header = $request->headers->all();
+            $data  = $this->get('dokter/' . $start . '/' . $limit, [], [], $header);
+            return $data;
+        } catch (\Exception $e) {
+            return $this->response->setMessage($e->getMessage(), $e->getCode());
+        }
     }
 }

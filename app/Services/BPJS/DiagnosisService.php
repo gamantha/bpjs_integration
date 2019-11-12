@@ -2,8 +2,6 @@
 
 namespace App\Services\BPJS;
 
-
-use Illuminate\Http\Request;
 use App\Services\ResponseService;
 use App\Services\AbstractService;
 use App\Models\Diagnosis;
@@ -69,7 +67,7 @@ class DiagnosisService extends AbstractService
 
             return $this->response->setMessage('Data Exist', 200);
         } catch (\Exception $e) {
-            $this->response->setMessage('Error insert data', 500);
+            return $this->response->setMessage($e->getMessage(), $e->getCode());
         }
     }
 }

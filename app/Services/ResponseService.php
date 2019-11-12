@@ -12,7 +12,6 @@ class ResponseService
                 'code' => $code
             ]
         ];
-
         return response()->json($response, $code);
     }
     public function setResponse($data, $count, $message, $code = 200)

@@ -2,8 +2,6 @@
 
 namespace App\Services\BPJS;
 
-
-use Illuminate\Http\Request;
 use App\Services\ResponseService;
 use App\Services\AbstractService;
 
