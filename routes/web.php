@@ -20,6 +20,7 @@ $router->post('/post-diagnosis', 'DiagnosisController@postDiagnosis');
 $router->get('/dokter/{start}/{limit}', 'DoctorController@index');
 $router->get('/kesadaran', 'AwarenessController@index');
 $router->get('/provider/{start}/{limit}', 'ProviderController@index');
+$router->get('/poli/fktp/{start}/{limit}', 'PoliController@index');
 
 $router->group(['prefix' => 'kunjungan'], function () use ($router) {
     $router->get('/rujukan/{noVisits}', 'VisitsController@index');
