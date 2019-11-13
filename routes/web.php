@@ -46,3 +46,10 @@ $router->group(['prefix' => 'pendaftaran'], function () use ($router) {
     $router->post('/', 'RegistrationController@addRegistration');
     $router->delete('/peserta/{noKartu}/tglDaftar/{tglDaftar}/noUrut/{noUrut}/kdPoli/{kdPoli}', 'RegistrationController@deleteRegistration');
 });
+
+$router->group(['prefix' => 'obat'], function () use ($router) {
+    $router->get('/dpho/{keyword}/{start}/{limit}', 'MedicamentController@getDPHO');
+    $router->get('/kunjungan/{noKunjungan}', 'MedicamentController@getMedicamentVisit');
+    $router->post('/kunjungan', 'MedicamentController@addMedicament');
+    $router->delete('/{kdObatSK}/kunjungan/{noKunjungan}', 'MedicamentController@deleteMedicament');
+});

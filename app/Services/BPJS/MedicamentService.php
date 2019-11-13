@@ -5,7 +5,7 @@ namespace App\Services\BPJS;
 use App\Services\ResponseService;
 use App\Services\AbstractService;
 
-class VisitsService extends AbstractService
+class MedicamentService extends AbstractService
 {
     protected $response;
 
@@ -14,56 +14,45 @@ class VisitsService extends AbstractService
         $this->response = $response;
     }
 
-    public function getVisits($request, $noVisits)
+    public function getDPHO($request, $keyword, $start, $limit)
     {
         try {
             $header = $request->headers->all();
-            $data  = $this->get('kunjungan/rujukan/' . $noVisits, [], [], $header);
+            $data  = $this->get('obat/dpho/' . $keyword . '/' . $start . '/' . $limit, [], [], $header);
             return $data;
         } catch (\Exception $e) {
             return $this->response->setMessage($e->getMessage(), 500);
         }
     }
 
-    public function getHistory($request, $noCard)
+    public function getMedicamentVisit($request, $noKunjungan)
     {
         try {
             $header = $request->headers->all();
-            $data  = $this->get('kunjungan/peserta/' . $noCard, [], [], $header);
+            $data  = $this->get('obat/kunjungan/' . $noKunjungan, [], [], $header);
             return $data;
         } catch (\Exception $e) {
             return $this->response->setMessage($e->getMessage(), 500);
         }
     }
 
-    public function addVisitor($request)
+    public function addMedicament($request)
     {
         try {
             $header = $request->headers->all();
             $params = $request->input();
-            $data  = $this->post('kunjungan', $header, $params);
+            $data  = $this->post('obat/kunjungan', $header, $params);
             return $data;
         } catch (\Exception $e) {
             return $this->response->setMessage($e->getMessage(), $e->getCode());
         }
     }
 
-    public function updateVisitor($request)
+    public function deleteMedicament($request, $kdObatSK, $noKunjungan)
     {
         try {
             $header = $request->headers->all();
-            $data  = $this->put('kunjungan', $header);
-            return $data;
-        } catch (\Exception $e) {
-            return $this->response->setMessage($e->getMessage(), $e->getCode());
-        }
-    }
-
-    public function deleteVisitor($request, $noVisits)
-    {
-        try {
-            $header = $request->headers->all();
-            $data  = $this->delete('kunjungan/' . $noVisits, $header);
+            $data  = $this->delete('obat/' . $kdObatSK . '/kunjungan/' . $noKunjungan, $header);
             return $data;
         } catch (\Exception $e) {
             return $this->response->setMessage($e->getMessage(), $e->getCode());
