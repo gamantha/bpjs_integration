@@ -18,7 +18,8 @@ class McuService extends AbstractService
     {
         try {
             $header = $request->headers->all();
-            $data  = $this->post('mcu', $header);
+            $params = $request->input();
+            $data  = $this->post('mcu', $header, $params);
             return $data;
         } catch (\Exception $e) {
             return $this->response->setMessage($e->getMessage(), $e->getCode());

@@ -39,3 +39,10 @@ $router->group(['prefix' => 'peserta'], function () use ($router) {
     $router->get('/{noParticipant}', 'ParticipantController@index');
     $router->get('/{jenis}/{noParticipant}', 'ParticipantController@index');
 });
+
+$router->group(['prefix' => 'pendaftaran'], function () use ($router) {
+    $router->get('/noUrut/{no}/tglDaftar/{tgl}', 'RegistrationController@getByNoUrut');
+    $router->get('/tglDaftar/{tgl}/{start}/{limit}', 'RegistrationController@getByProvider');
+    $router->post('/', 'RegistrationController@addRegistration');
+    $router->delete('/peserta/{noKartu}/tglDaftar/{tglDaftar}/noUrut/{noUrut}/kdPoli/{kdPoli}', 'RegistrationController@deleteRegistration');
+});

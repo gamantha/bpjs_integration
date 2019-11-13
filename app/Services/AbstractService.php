@@ -18,7 +18,9 @@ abstract class AbstractService
             $baseUri =  env('BASE_URL_BPJS');
             $client = new \GuzzleHttp\Client();
             $header = $this->getHeaders($headers);
-            $res = $client->request($method, $baseUri . $url, $header);
+            $params = ['json' => $options, 'headers' => $header];
+
+            $res = $client->request($method, $baseUri . $url, $params);
             return json_decode($res->getBody(), true);
         } catch (RequestException $re) {
             throw new \Exception($re->getMessage(), $re->getCode());
@@ -34,9 +36,9 @@ abstract class AbstractService
      * @param array $query
      * @return mixed
      */
-    public function post(string $url, array $headers = array())
+    public function post(string $url, array $headers = array(), array $params = array())
     {
-        return $this->send('POST', $url, [],  $headers);
+        return $this->send('POST', $url, $params,  $headers);
     }
     /**
      * Send POST request.
@@ -90,12 +92,11 @@ abstract class AbstractService
     public function getHeaders($headers)
     {
         $header = [
-            'headers' => [
-                'X-cons-id' => $headers['x-cons-id'][0],
-                'X-Timestamp' => $headers['x-timestamp'][0],
-                'X-Signature' => $headers['x-signature'][0],
-                'X-Authorization' => $headers['x-authorization'][0],
-            ]
+            'X-cons-id' => $headers['x-cons-id'][0],
+            'X-Timestamp' => $headers['x-timestamp'][0],
+            'X-Signature' => $headers['x-signature'][0],
+            'X-Authorization' => $headers['x-authorization'][0],
+            'Content-Type' => 'application/json'
         ];
         return $header;
     }
