@@ -25,4 +25,38 @@ class McuService extends AbstractService
             return $this->response->setMessage($e->getMessage(), $e->getCode());
         }
     }
+
+    public function updateMcu($request)
+    {
+        try {
+            $header = $request->headers->all();
+            $params = $request->input();
+            $data  = $this->put('mcu', $header, $params);
+            return $data;
+        } catch (\Exception $e) {
+            return $this->response->setMessage($e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function getMcu($request, $no)
+    {
+        try {
+            $header = $request->headers->all();
+            $data  = $this->get('mcu/kunjungan/' . $no, [], [], $header);
+            return $data;
+        } catch (\Exception $e) {
+            return $this->response->setMessage($e->getMessage(), 500);
+        }
+    }
+
+    public function deleteMcu($request, $kdMcu, $noKunjungan)
+    {
+        try {
+            $header = $request->headers->all();
+            $data  = $this->delete('mcu/' . $kdMcu . '/kunjungan/' . $noKunjungan, $header);
+            return $data;
+        } catch (\Exception $e) {
+            return $this->response->setMessage($e->getMessage(), 500);
+        }
+    }
 }

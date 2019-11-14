@@ -18,4 +18,19 @@ class McuController extends Controller
     {
         return $this->service->postMcu($request);
     }
+
+    public function updateMcu(Request $request)
+    {
+        return $this->service->updateMcu($request);
+    }
+
+    public function getMcu(Request $request, $noKunjungan)
+    {
+        return $this->service->getMcu($request, $noKunjungan);
+    }
+
+    public function deleteMcu(Request $request, $kdMcu, $noKunjungan)
+    {
+        return $this->service->deleteMcu($request, $kdMcu, $noKunjungan);
+    }
 }

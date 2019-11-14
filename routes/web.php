@@ -33,6 +33,9 @@ $router->group(['prefix' => 'kunjungan'], function () use ($router) {
 
 $router->group(['prefix' => 'mcu'], function () use ($router) {
     $router->post('/', 'McuController@postMcu');
+    $router->put('/', 'McuController@updateMcu');
+    $router->get('/kunjungan/{noKunjungan}', 'McuController@getMcu');
+    $router->delete('/{kdMcu}/kunjungan/{noKunjungan}', 'McuController@deleteMcu');
 });
 
 $router->group(['prefix' => 'peserta'], function () use ($router) {
