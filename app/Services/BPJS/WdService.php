@@ -21,7 +21,6 @@ class WdService extends AbstractService
     public function getPendaftaran($request,$bpjs)
     {
         $search = $this->model::
-        //all();
         where('no_bpjs', '=', $bpjs)->get();
 
         $data = [];
@@ -51,7 +50,7 @@ class WdService extends AbstractService
     
 
         $search[0]->nama = $request->name;
-        //$model1->kelamin = $request->kelamin;
+        $search[0]->kelamin = $request->kelamin;
         $search[0]->save();
         return $this->response->setResponse($data, count($search), 'Sukses PUT data');
     }
