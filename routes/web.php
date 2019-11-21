@@ -17,7 +17,7 @@ $router->get('/', function () use ($router) {
 
 $router->get('/diagnosa/{keyword}/{start}/{limit}', 'DiagnosisController@index');
 $router->put('/wd/pendaftaran/{bpjs_no}/{date}', 'WdController@putpendaftaran');
-$router->get('/wd/pendaftaran/{bpjs_no}/{date}', 'WdController@getpendaftaran');
+$router->get('/wd/pendaftaran/{bpjs_no}', 'WdController@getpendaftaran');
 $router->put('/wd/puttest', 'WdController@puttest');
 $router->get('/wd/gettest', 'WdController@gettest');
 $router->post('/post-diagnosis', 'DiagnosisController@postDiagnosis');

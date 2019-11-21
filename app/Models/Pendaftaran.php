@@ -13,7 +13,7 @@ const UPDATED_AT = 'modified_at';
     protected $table = 'pendaftaran';
 
     protected $fillable = [
-        'kelamin', 'nama', 'id'
+        'kelamin', 'nama', 'id', 'no_bpjs'
     ];
 }
 

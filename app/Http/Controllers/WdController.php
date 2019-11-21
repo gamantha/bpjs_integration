@@ -33,10 +33,9 @@ class WdController extends Controller
 
 
 
-    public function getpendaftaran (Request $request, $bpjs_no, $date)
+    public function getpendaftaran (Request $request, $bpjs_no)
     {
-        //echo '<pre>';
-        return $this->service->getPendaftaran($request);
+        return $this->service->getPendaftaran($request, $bpjs_no);
     }
 
     public function putpendaftaran (Request $request, $bpjs_no, $id)

@@ -18,22 +18,19 @@ class WdService extends AbstractService
         $this->model = $model;
     }
 
-    public function getPendaftaran()
+    public function getPendaftaran($request,$bpjs)
     {
-        $search = $this->model::all();
-        //where('cat_code', 'LIKE', "%{$keyword}%")
-            //->orWhere('code', 'LIKE', '%' . $keyword . '%')
-            //->orWhere('name', 'LIKE', "%{$keyword}%")
-            //->orWhere('cat_name', 'LIKE', "%{$keyword}%")
-            // ->get()->toArray();
+        $search = $this->model::
+        //all();
+        where('no_bpjs', '=', $bpjs)->get();
 
         $data = [];
         if (count($search) > 0) {
            // $data[] = array_slice($search, $start, $limit);
            $data = $search;
         }
-
-        return $this->response->setResponse($data, count($search), 'Sukses get data');
+//print_r($bpjs);
+        return $this->response->setResponse($data, count($search), 'Sukses get ALL data');
     }
 
     public function putPendaftaran($request, $bpjs, $id)
@@ -56,10 +53,6 @@ class WdService extends AbstractService
         $search[0]->nama = $request->name;
         //$model1->kelamin = $request->kelamin;
         $search[0]->save();
-//echo '<pre>';
-
-     //print_r($request->all());
-        //print_r($model1);
         return $this->response->setResponse($data, count($search), 'Sukses PUT data');
     }
 
