@@ -3,13 +3,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\BPJS\DiagnosisService;
+use App\Services\BPJS\WdService;
 
 class DiagnosisController extends Controller
 {
     protected $service;
 
-    public function __construct(DiagnosisService $service)
+    public function __construct(WdService $service)
     {
         $this->service = $service;
     }
