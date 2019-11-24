@@ -21,7 +21,21 @@ class ParticipantService extends AbstractService
             $credential = $request->input('pcareCreds');
             $noParticipant = $payload['bpjs'];
             $data  = $this->get('peserta/' . $noParticipant, [], [], $credential);
-            return $data;
+
+            $response = [
+                'classType' => [
+                    'name' => $data['response']['jnsKelas']['nama'],
+                    'code' => $data['response']['jnsKelas']['kode'],
+                ],
+                'participantType' => [
+                    'name' => $data['response']['jnsPeserta']['nama'],
+                    'code' => $data['response']['jnsPeserta']['nama']
+                ],
+                "active" =>  $data['response']['aktif'],
+                "activeDescription" => $data['response']['ketAktif'],
+            ];
+
+            return $response;
         } catch (\Exception $e) {
             return $this->response->setMessage($e->getMessage(), $e->getCode());
         }
