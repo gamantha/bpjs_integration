@@ -39,9 +39,27 @@ class RegistrationService extends AbstractService
     public function addRegistration($request)
     {
         try {
-            $header = $request->headers->all();
-            $params = $request->input();
-            $data  = $this->post('pendaftaran', $header, $params);
+            $body = $request->input('payloadData');
+            $credential = $request->input('pcareCreds');
+
+            $payload = [
+                "kdProviderPeserta" => $body['providerCode'],
+                "tglDaftar" => $body['registrationDate'],
+                "noKartu" => $body['bpjsNo'],
+                "kdPoli" => $body['departmentCode'],
+                "keluhan" => $body['complaints'],
+                "kunjSakit" => $body['sickVisit'],
+                "sistole" => $body['sickVisit'],
+                "diastole" => $body['diastole'],
+                "beratBadan" => $body['bodyWeight'],
+                "tinggiBadan" => $body['bodyHeight'],
+                "respRate" => $body['respRate'],
+                "heartRate" => $body['heartRate'],
+                "rujukBalik" => $body['referBack'],
+                "kdTkp" => $body['tkpCode'],
+            ];
+
+            $data  = $this->post('pendaftaran', $credential, $payload);
             return $data;
         } catch (\Exception $e) {
             return $this->response->setMessage($e->getMessage(), $e->getCode());
