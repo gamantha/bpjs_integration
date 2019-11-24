@@ -92,10 +92,18 @@ abstract class AbstractService
 
     public function getHeaders($headers)
     {
-        $timestamp = Carbon::now()->timestamp;
+        date_default_timezone_set('UTC');
+        $timestamp = time();
         $message = $headers['ConsId'] . '&' . $timestamp;
-        $signature  = hash_hmac('sha256', $message, $headers['secretkey']);
+        $hash  = hash_hmac('sha256', $message, $headers['secretkey']);
         $authorization = base64_encode($headers['username'] . ':' . $headers['password'] . ':' . $headers['ConsId']);
+
+        $sign = '';
+        foreach(str_split($hash, 2) as $pair) {
+            $sign .= chr(hexdec($pair));
+        }
+        $signature = base64_encode($sign);
+
         $header = [
             'X-cons-id' => $headers['ConsId'],
             'X-Timestamp' => $timestamp,
@@ -103,6 +111,8 @@ abstract class AbstractService
             'X-Authorization' => 'Basic ' . $authorization,
             'Content-Type' => 'application/json'
         ];
+
+        // dd($header);
         return $header;
     }
 }
