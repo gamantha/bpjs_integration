@@ -39,7 +39,7 @@ $router->group(['prefix' => 'mcu'], function () use ($router) {
 });
 
 $router->group(['prefix' => 'peserta'], function () use ($router) {
-    $router->get('/{noParticipant}', 'ParticipantController@index');
+    $router->post('/', 'ParticipantController@index');
     $router->get('/{jenis}/{noParticipant}', 'ParticipantController@index');
 });
 

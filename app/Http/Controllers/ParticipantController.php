@@ -14,9 +14,9 @@ class ParticipantController extends Controller
         $this->service = $service;
     }
 
-    public function index(Request $request, $noParticipant)
+    public function index(Request $request)
     {
-        return $this->service->getParticipant($request, $noParticipant);
+        return $this->service->getParticipant($request);
     }
 
     public function getParticipantByJenis(Request $request, $jenis, $noParticipant)

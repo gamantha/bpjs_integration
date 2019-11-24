@@ -3,6 +3,7 @@ namespace App\Services;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\RequestException;
+use Carbon\Carbon;
 
 abstract class AbstractService
 {
@@ -91,11 +92,15 @@ abstract class AbstractService
 
     public function getHeaders($headers)
     {
+        $timestamp = Carbon::now()->timestamp;
+        $message = $headers['ConsId'] . '&' . $timestamp;
+        $signature  = hash_hmac('sha256', $message, $headers['secretkey']);
+        $authorization = base64_encode($headers['username'] . ':' . $headers['password'] . ':' . $headers['ConsId']);
         $header = [
-            'X-cons-id' => $headers['x-cons-id'][0],
-            'X-Timestamp' => $headers['x-timestamp'][0],
-            'X-Signature' => $headers['x-signature'][0],
-            'X-Authorization' => $headers['x-authorization'][0],
+            'X-cons-id' => $headers['ConsId'],
+            'X-Timestamp' => $timestamp,
+            'X-Signature' => $signature,
+            'X-Authorization' => 'Basic ' . $authorization,
             'Content-Type' => 'application/json'
         ];
         return $header;

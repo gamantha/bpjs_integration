@@ -14,11 +14,13 @@ class ParticipantService extends AbstractService
         $this->response = $response;
     }
 
-    public function getParticipant($request, $noParticipant)
+    public function getParticipant($request)
     {
         try {
-            $header = $request->headers->all();
-            $data  = $this->get('peserta/' . $noParticipant, [], [], $header);
+            $payload = $request->input('payloadData');
+            $credential = $request->input('pcareCreds');
+            $noParticipant = $payload['bpjs'];
+            $data  = $this->get('peserta/' . $noParticipant, [], [], $credential);
             return $data;
         } catch (\Exception $e) {
             return $this->response->setMessage($e->getMessage(), $e->getCode());
