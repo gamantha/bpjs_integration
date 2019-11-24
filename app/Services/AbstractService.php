@@ -96,10 +96,10 @@ abstract class AbstractService
         $timestamp = time();
         $message = $headers['ConsId'] . '&' . $timestamp;
         $hash  = hash_hmac('sha256', $message, $headers['secretkey']);
-        $authorization = base64_encode($headers['username'] . ':' . $headers['password'] . ':' . $headers['ConsId']);
+        $authorization = base64_encode($headers['username'] . ':' . $headers['password'] . ':' . '095');
 
         $sign = '';
-        foreach(str_split($hash, 2) as $pair) {
+        foreach (str_split($hash, 2) as $pair) {
             $sign .= chr(hexdec($pair));
         }
         $signature = base64_encode($sign);
@@ -112,7 +112,6 @@ abstract class AbstractService
             'Content-Type' => 'application/json'
         ];
 
-        // dd($header);
         return $header;
     }
 }
